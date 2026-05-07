@@ -1,0 +1,77 @@
+@if (inputProject()) {
+  
+  <div #hero class="fixed inset-0 z-[100] bg-black overflow-y-auto">
+    <div class="min-h-screen p-8 md:p-24 flex flex-col">
+      <button (click)="btnClicked()"
+        class="ml-auto w-[10] cursor-pointer p-2 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all"
+      >
+        <svg lucideX size="24"></svg>
+      </button>
+  
+      <div class="max-w-6xl mx-auto w-full flex-grow">
+        <div class="mb-12">
+          <div class="animate-item text-xs uppercase tracking-[0.3em] text-petrol font-bold mb-4">
+            {{inputProject()?.category}}
+          </div>
+          <h2 class="font-display text-5xl md:text-8xl font-bold tracking-tighter mb-8">
+            {{inputProject()?.title}}
+          </h2>
+        </div>
+  
+        <div class="w-full overflow-hidden mb-16 bg-white/5">
+          <img 
+            [src]="inputProject()?.image"
+            [alt]="inputProject()?.title" 
+            class="w-full h-full object-cover "
+            referrerPolicy="no-referrer"
+          />
+        </div>
+  
+        <div class="grid md:grid-cols-2 gap-16 mb-32">
+          <div class="space-y-8">
+            <h3 class="text-xs uppercase tracking-widest text-white/40">Sobre o Projeto</h3>
+            <p class="text-lg font-light">
+              {{inputProject()?.description}}
+            </p>
+          </div>
+          <div class="space-y-8">
+            @if (inputProject()?.challenge; as challenge) {
+              <h3 class="text-xs uppercase tracking-widest text-white/40">Desafio</h3>
+              <p class="text-lg font-light">
+                {{challenge}}
+              </p>              
+            }
+          </div>
+        </div>
+  
+        <div class="flex flex-wrap gap-8 pt-16 border-t border-white/10 mb-24">
+          @if(inputProject()?.links?.project){
+            <a 
+              [href]="inputProject()?.links?.project"
+              target="_blank"
+              class="px-12 py-6 border border-white/20 text-white font-display font-bold uppercase tracking-widest hover:bg-petroleum text-center transition-all text-sm md:w-auto w-full"
+            >
+              Link do Projeto
+            </a>
+          }
+          @if (inputProject()?.links?.demo) {
+            <a 
+              [href]="inputProject()?.links?.demo"
+              target="_blank"
+              class="px-12 py-6 border border-white/20 text-white font-display font-bold uppercase tracking-widest hover:bg-petroleum transition-all text-sm md:w-auto w-full text-center" 
+            >
+              Demo
+            </a>
+
+          }
+          <button 
+            (click)="btnClicked()"
+            class="cursor-pointer px-12 py-6 text-white/40 font-display font-bold uppercase tracking-widest hover:text-white transition-all text-sm md:w-auto w-full text-center"
+          >
+            Voltar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

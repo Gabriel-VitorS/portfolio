@@ -1,0 +1,121 @@
+<main>
+  <section class="min-h-screen flex flex-col justify-center px-8 md:px-24 pt-32 relative overflow-hidden">
+    <div class="relative z-10">
+      <div #hero class="max-w-5xl">
+        <h1 class="font-display text-6xl md:text-[10vw] leading-[0.9] font-bold tracking-tighter mb-12">
+          <span class="block animate-item">GABRIEL VITOR</span>
+          <!-- <span class="block">VITOR</span> -->
+        </h1>
+        
+        <div class="flex flex-col md:flex-row gap-12 items-start mt-12">
+          <div 
+            class="max-w-md text-lg text-white/60 font-light leading-relaxed"
+          >
+            <span class="animate-item">Desenvolvedor Web</span> <br>
+            <span class="animate-item">Designer Gráfico</span>
+          </div>
+          
+        
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="py-32 px-8 md:px-24">
+    <div class="flex justify-between items-end mb-24">
+      <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tighter">
+        ALGUNS <br /> <span class="text-petrol">PROJETOS</span>
+      </h2>
+    </div>
+
+    <div class="space-y-20 md:space-y-30">
+      @for (project of allProjects.slice(0,4); track $index) {
+        <app-last-projects
+        class="flex flex-col gap-12 items-center"
+        [class.md:flex-row]="$index % 2 === 0"
+        [class.md:flex-row-reverse]="$index % 2 === 1"
+        [inputProjectTitle]="project.title"
+        [inputProjectUrl]="project.image"
+        [inputProjectCategory]="project.category"
+        (click)="openModal(project)"
+        />
+      }
+    </div>
+
+    <div class="mt-32 flex justify-center">
+      <button routerLink="/projetos" class="cursor-pointer group flex items-center gap-4 px-8 py-4 border border-white/10 rounded-full hover:bg-petroleum transition-all text-xs uppercase tracking-[0.2em] font-bold">
+        Ver todos os projetos
+
+      </button>
+    </div>
+  </section>
+
+  <section id="about" class="py-32 px-8 md:px-24 bg-white text-black">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="font-display text-5xl md:text-8xl font-bold tracking-tighter mb-16">
+        SOBRE MIM
+      </h2>
+      
+      <div class="grid md:grid-cols-2 gap-16">
+        <p class="text-xl leading-relaxed font-light">
+          Com 26 anos (e contando) formado em Técnico em Design Gráfico, hoje em busca da minha formação
+          em Análise e Desenvolvimento de Sistemas. Acredito que a tecnologia e a estética devem
+          caminhar juntas para criar boas experiências digitais.
+          <br>
+          Sou movido pela curiosidade e buscando sempre pelo novo. Quando não estou programando ou
+          criando layouts/posts, estou em cima da uma bicicleta ou registrando o mundo através do meu celular.
+          Meu objetivo é unir minha carreira e o meu sonho de viajar pelo mundo, explorando novas culturas e paisagens.
+        
+        </p>
+        <div class="space-y-8">
+          <div class="border-t border-black/10 pt-4">
+            <div class="text-xs uppercase tracking-widest mb-2 opacity-50">Habilidades Técnicas</div>
+            <div class="flex flex-wrap gap-2">
+              
+              @for (skill of hardSkills(); track $index) {
+                <span class="px-3 py-1 border border-black/20 rounded-full text-xs">
+                  {{skill}}    
+                </span>
+                
+              }
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="py-64 px-8 md:px-24 text-center relative overflow-hidden">
+  
+
+    <div
+      class="relative z-10"
+    >
+      <h2 class="font-display text-5xl md:text-[12vw] font-bold tracking-tighter mb-12">
+        Quer construir algo?
+      </h2>
+      <a 
+        href="mailto:hello@gabriel.design"
+        class="md:text-4xl font-light hover:text-petrol transition-colors underline underline-offset-8 decoration-1"
+      >
+        gabrielvitordasila@gmail.com
+      </a>
+    </div>
+
+    <div class="mt-32 flex justify-center gap-8">
+      <a href="https://github.com/Gabriel-VitorS" target="_blank" class="p-4 rounded-full border border-white/10 hover:bg-petroleum hover:text-black transition-all">
+        <img src="icons/github-white-icon.svg" alt="" width="20">
+      </a>
+      <a href="https://www.linkedin.com/in/gabriel-vitors/" target="_blank" class="p-4 rounded-full border border-white/10 hover:bg-petroleum hover:text-black transition-all">
+        <img src="icons/linkedin-app-white-icon.svg" alt="" width="20">
+        <!-- <Linkedin size={20} /> -->
+      </a>
+    </div>
+  </section>
+</main>
+
+@if (selectedProject(); as project) {
+  <app-modal-projects [inputProject]="project" (closeModal)="selectedProject.set(null)" />
+
+}

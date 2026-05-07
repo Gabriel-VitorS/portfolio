@@ -1,0 +1,65 @@
+<div class="min-h-screen bg-black text-white p-8 md:p-24">
+  <nav class="mb-24 flex justify-between items-center">
+    <a 
+      routerLink="/" 
+      class="group flex items-center gap-2 text-xs uppercase tracking-widest hover:text-petrol transition-colors"
+    >
+      <svg lucideArrowLeft [size]="16" class="group-hover:-translate-x-1 transition-transform"></svg>
+      Voltar para Home
+    </a>
+    <div class="font-display font-bold  tracking-tighter">
+      <form action="" [formGroup]="filterForm">
+        <select name="" id="" class="bg-black" formControlName="filter">
+          <option value="Todos">Todos</option>
+          <option value="Programação">Programação</option>
+          <option value="Design">Design</option>
+        </select>
+      </form>
+    </div>
+  </nav>
+
+  <header class="mb-32">
+    <h1 class="font-display text-6xl md:text-8xl font-bold tracking-tighter mb-8">
+      TODOS OS <br /> <span class="text-petrol">PROJETOS</span>
+    </h1>
+  </header>
+
+  <div #hero class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-24">
+    
+    @for (project of projects(); track $index) {
+
+    
+      <div
+        class="group cursor-pointer animate-item"
+        (click)="openModal(project)"
+      >
+        <div class="relative aspect-[4/3] overflow-hidden mb-6 bg-white/5">
+          <img
+            [src]="project.image"
+            alt="project.title"
+            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+          />
+        </div>
+        
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-[10px] uppercase tracking-widest text-petrol font-bold mb-1">
+              {{project.category}}
+            </div>
+            <h3 class="text-xl font-display font-bold tracking-tight group-hover:text-petrol transition-colors">
+              {{project.title}}
+            </h3>
+          </div>
+          <!-- <div class="text-[10px] uppercase tracking-widest text-white/20 pt-1">
+            project.year
+          </div> -->
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+@if (selectedProject(); as project) {
+  <app-modal-projects [inputProject]="project" (closeModal)="selectedProject.set(null)" />
+
+}
