@@ -20,7 +20,7 @@ export class HomeComponent implements AfterViewInit {
 
   readonly allProjects: Project[] = [
         {
-        title: "My Cardapio Digital",
+        title: "My Cardápio Digital",
         category: "Programação",
         image: "images/web-projects/my-cardapio-digital.png",
         description: "Projeto de um cardápio digital utilizando Angular 21 e Bootstrap 5 em que uma empresa pode fazer o registro e montar seu cardápio, alterando as cores e a ordem de exibição dos produtos. O projeto se conecta com uma API feita em Laravel.",
@@ -68,16 +68,24 @@ export class HomeComponent implements AfterViewInit {
   selectedProject = signal<Project | null>(null)
 
   hardSkills = signal([
+    "JavaScript",
+    "PHP",
     "VueJs",
     "Angular",
     "AdonisJs",
-    "Laravel"
+    "Laravel",
+    "CorelDRAW",
+    "Photoshop",
+    "Figma"
   ])
 
   openModal(project: Project){
     this.selectedProject.set(project)
   }
 
+  goToWorkSection(){
+    document.getElementById("work")?.scrollIntoView({behavior:'smooth'})
+  }
 
   ngAfterViewInit(): void {
     const heroEl = this.hero()?.nativeElement

@@ -2,11 +2,11 @@ import { Project } from "../interfaces";
 
 export const ALL_PROJECTS_WEB : Project[] = [
     {
-        title: "My Cardapio Digital",
+        title: "My Cardápio Digital",
         category: "Programação",
         image: "images/web-projects/my-cardapio-digital.png",
         description: "Projeto de um cardápio digital utilizando Angular 21 e Bootstrap 5 em que uma empresa pode fazer o registro e montar seu cardápio, alterando as cores e a ordem de exibição dos produtos. O projeto se conecta com uma API feita em Laravel.",
-        challenge: "Criar um projeto do zero utilizando, pela primeira vez, o Angular junto com o Bootstrap 5 e utilizar a metodolia SCRUM",
+        challenge: "Criar um projeto do zero utilizando, pela primeira vez, o Angular junto com o Bootstrap 5 utilizando a estrutura Scrum",
         links: { 
             demo: 'https://gabriel-vitors.github.io/mycardapiodigital_front_angular/#/gestor/login',
             project: 'https://github.com/Gabriel-VitorS/mycardapiodigital_front_angular'
